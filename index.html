@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kishor Computer & Online Service - Invoice Panel</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+    .panel {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 10px;
+      background: #f2f2f2;
+      justify-content: space-around;
+    }
+    .tool {
+      background: white;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 10px;
+      width: 200px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .tool i {
+      font-size: 30px;
+      color: #0066cc;
+    }
+    .tool p {
+      margin-top: 10px;
+    }
+    #invoice {
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Kishor Computer & Online Service</h1>
+  <p>Photocopy, Lamination, Photo Print, and More</p>
+</header>
+
+<div class="panel">
+  <div class="tool">
+    <i class="fas fa-copy"></i>
+    <p>Photocopy</p>
+  </div>
+  <div class="tool">
+    <i class="fas fa-layer-group"></i>
+    <p>Lamination</p>
+  </div>
+  <div class="tool">
+    <i class="fas fa-image"></i>
+    <p>Photo Print</p>
+  </div>
+  <div class="tool">
+    <i class="fas fa-file-invoice"></i>
+    <p>Invoice System</p>
+  </div>
+  <div class="tool">
+    <i class="fas fa-print"></i>
+    <p>Print Panel</p>
+  </div>
+</div>
+
+<div id="invoice">
+  <h2>Generate Invoice</h2>
+  <input type="text" id="customer" placeholder="Customer Name">
+  <input type="text" id="service" placeholder="Service (e.g., Lamination)">
+  <input type="number" id="amount" placeholder="Amount (₹)">
+  <br>
+  <button onclick="generatePDF()">Download PDF</button>
+</div>
+
+<footer>
+  <p>&copy; 2025 Kishor Computer & Online Service</p>
+</footer>
+
+<script>
+  function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const customer = document.getElementById("customer").value;
+    const service = document.getElementById("service").value;
+    const amount = document.getElementById("amount").value;
+
+    doc.text("Kishor Computer & Online Service", 10, 10);
+    doc.text("Customer Name: " + customer, 10, 30);
+    doc.text("Service: " + service, 10, 40);
+    doc.text("Amount: ₹" + amount, 10, 50);
+    doc.text("Thank you for your business!", 10, 70);
+
+    doc.save("invoice.pdf");
+  }
+</script>
+
+</body>
+</html>
